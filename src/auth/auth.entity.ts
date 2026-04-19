@@ -8,4 +8,6 @@ export class User extends BaseEntity {
   username: string;
   @Column({ type: 'varchar' })
   password: string;
+  @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
+  role: string;
 }

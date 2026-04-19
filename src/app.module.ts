@@ -9,6 +9,7 @@ import { RateModule } from './rate/rate.module';
 import { Rate } from './rate/entities/rate.entity';
 import { AuthModule } from './auth/auth.module';
 import { User } from './auth/auth.entity';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { User } from './auth/auth.entity';
     ProductsModule,
     RateModule,
     AuthModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -4,6 +4,8 @@ import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './auth.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { RedisModule } from 'src/redis/redis.module';
+import { RedisService } from 'src/redis/redis.service';
 
 @Module({
   imports: [
@@ -11,8 +13,9 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.register({
       global: true,
     }),
+    RedisModule,
   ],
-  providers: [AuthService],
+  providers: [RedisService, AuthService],
   controllers: [AuthController],
 })
 export class AuthModule {}

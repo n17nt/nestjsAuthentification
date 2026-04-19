@@ -4,13 +4,20 @@ import { User } from './auth.entity';
 import { Repository } from 'typeorm';
 import { RegisterDto } from './dto/auth.dtos';
 import { JwtService } from '@nestjs/jwt';
+import { RedisService } from 'src/redis/redis.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
     private readonly jwtService: JwtService,
+    private readonly redis: RedisService,
   ) {}
+  async getUserById(userid: number) {
+    return this.userRepo.findOne({
+      where: { id: userid },
+    });
+  }
 
   async create(registerDto: RegisterDto) {
     let pro = this.userRepo.create(registerDto);
